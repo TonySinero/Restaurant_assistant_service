@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = "./pkg/managerservice";
+
+service ManagerService {
+  rpc CreateManager(Manager) returns (google.protobuf.Empty) {}
+}
+
+message Manager {
+  string UUID = 1;
+  string FullName = 2;
+  string Email = 3;
+  int64 ContactNumber = 4;
+}
+

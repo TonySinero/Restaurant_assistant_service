@@ -1,0 +1,29 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./pkg/restaurantservice";
+
+service RestaurantService {
+  rpc GetUserAddress(UserAddress) returns (NearestRestaurants) {}
+}
+
+message NearestRestaurants{
+  repeated NearestRestaurant List = 1;
+}
+
+message NearestRestaurant {
+  string ID = 1 ;
+  string Title = 2;
+  string Description = 3;
+  float Rating = 4;
+  float MediumPrice = 5;
+  google.protobuf.Timestamp TimeWorkStart = 6;
+  google.protobuf.Timestamp TimeWorkEnd = 7;
+  string Address = 8;
+  bool IsActive = 9;
+  string Image = 10;
+}
+
+message UserAddress {
+  string Address = 1;
+}

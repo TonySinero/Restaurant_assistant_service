@@ -1,0 +1,1209 @@
+basePath: /
+definitions:
+  courierProto.DeliveryService:
+    properties:
+      Id:
+        type: integer
+      ServiceDescription:
+        type: string
+      ServiceEmail:
+        type: string
+      ServiceManagerId:
+        type: integer
+      ServiceName:
+        type: string
+      ServicePhone:
+        type: string
+      ServicePhoto:
+        type: string
+      ServiceStatus:
+        type: string
+    type: object
+  domain.Dish:
+    properties:
+      cookingTime:
+        type: integer
+      cost:
+        type: number
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      restaurantId:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      weight:
+        type: number
+    required:
+    - cookingTime
+    - cost
+    - name
+    - restaurantId
+    - status
+    - type
+    - weight
+    type: object
+  domain.DishesCategory:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  domain.Feedback:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      orderID:
+        type: string
+      rating:
+        type: integer
+    type: object
+  domain.GetAllDishes:
+    properties:
+      cost:
+        type: number
+      description:
+        type: string
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      weight:
+        type: number
+    type: object
+  domain.GetDishByID:
+    properties:
+      cookingTime:
+        type: integer
+      cost:
+        type: number
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      weight:
+        type: number
+    type: object
+  domain.GetDishesByRestaurant:
+    properties:
+      category:
+        type: string
+      categoryId:
+        type: string
+      dishes:
+        items:
+          $ref: '#/definitions/domain.GetAllDishes'
+        type: array
+    type: object
+  domain.GetOrder:
+    properties:
+      address:
+        type: string
+      cost:
+        type: number
+      date:
+        type: string
+      id:
+        type: string
+      orderId:
+        type: integer
+      status:
+        type: string
+    type: object
+  domain.GetRestaurant:
+    properties:
+      address:
+        type: string
+      categories:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      image:
+        type: string
+      isActive:
+        type: boolean
+      mediumPrice:
+        type: number
+      number:
+        type: string
+      rating:
+        type: number
+      timeWorkEnd:
+        type: string
+      timeWorkStart:
+        type: string
+      title:
+        type: string
+    type: object
+  domain.GetRestaurantByAddress:
+    properties:
+      address:
+        type: string
+    type: object
+  domain.GetRestaurantCategories:
+    properties:
+      category:
+        type: string
+      restaurants:
+        items:
+          $ref: '#/definitions/domain.GetRestaurant'
+        type: array
+    type: object
+  domain.GetRestaurantOrderBy:
+    properties:
+      categories:
+        type: string
+      order_by:
+        type: string
+      sort_by:
+        type: string
+      title:
+        type: string
+    type: object
+  domain.OrderByID:
+    properties:
+      address:
+        type: string
+      clientFullName:
+        type: string
+      clientPhoneNumber:
+        type: string
+      cost:
+        type: number
+      courierService:
+        type: integer
+      deliveryTime:
+        type: string
+      deliveryType:
+        type: string
+      description:
+        type: string
+      dishes:
+        items:
+          $ref: '#/definitions/domain.OrdersDish'
+        type: array
+      feedback_id:
+        type: string
+      id:
+        type: string
+      orderId:
+        type: integer
+      paymentType:
+        type: string
+      rating:
+        type: integer
+      status:
+        type: string
+    type: object
+  domain.OrderDeliveryType:
+    properties:
+      Description:
+        type: string
+      id:
+        type: integer
+    type: object
+  domain.OrderStatus:
+    properties:
+      Description:
+        type: string
+      id:
+        type: integer
+    type: object
+  domain.OrdersDish:
+    properties:
+      amount:
+        type: integer
+      name:
+        type: string
+    type: object
+  domain.Restaurant:
+    properties:
+      address:
+        type: string
+      categories:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      email:
+        type: string
+      image:
+        type: string
+      number:
+        type: string
+      timeWorkEnd:
+        type: string
+      timeWorkStart:
+        type: string
+      title:
+        type: string
+      userId:
+        type: integer
+    required:
+    - title
+    type: object
+  domain.UpdateDish:
+    properties:
+      cookingTime:
+        type: integer
+      cost:
+        type: number
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      type:
+        type: string
+      weight:
+        type: number
+    type: object
+  domain.UpdateOrder:
+    properties:
+      courierService:
+        type: integer
+      deliveryType:
+        type: integer
+      status:
+        type: integer
+    type: object
+  domain.UpdateRestaurant:
+    properties:
+      address:
+        type: string
+      categories:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      email:
+        type: string
+      image:
+        type: string
+      isActive:
+        type: boolean
+      number:
+        type: string
+      timeWorkEnd:
+        type: string
+      timeWorkStart:
+        type: string
+      title:
+        type: string
+    type: object
+  handler.CheckNewOrdersMark:
+    properties:
+      data:
+        type: boolean
+    type: object
+  handler.GetAllOrderDeliveryServices:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/courierProto.DeliveryService'
+        type: array
+    type: object
+  handler.GetAllOrderDeliveryTypes:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.OrderDeliveryType'
+        type: array
+    type: object
+  handler.GetAllOrderStatuses:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.OrderStatus'
+        type: array
+    type: object
+  handler.GetAllOrders:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.GetOrder'
+        type: array
+    type: object
+  handler.GetOrderByID:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.OrderByID'
+        type: array
+    type: object
+  handler.dataResponse:
+    properties:
+      data: {}
+    type: object
+  handler.getAllDishesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.GetAllDishes'
+        type: array
+    type: object
+  handler.getAllRestaurantsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.GetRestaurant'
+        type: array
+    type: object
+  handler.getCategories:
+    properties:
+      data:
+        items:
+          type: string
+        type: array
+    type: object
+  handler.getDishResponse:
+    properties:
+      data:
+        $ref: '#/definitions/domain.GetDishByID'
+    type: object
+  handler.getDishesByRestaurantResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.GetDishesByRestaurant'
+        type: array
+    type: object
+  handler.getDishesTypes:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.DishesCategory'
+        type: array
+    type: object
+  handler.getFeedbacks:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.Feedback'
+        type: array
+    type: object
+  handler.getRestaurant:
+    properties:
+      data:
+        $ref: '#/definitions/domain.GetRestaurant'
+    type: object
+  handler.getRestaurantsCategoriesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/domain.GetRestaurantCategories'
+        type: array
+    type: object
+  handler.response:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.uploadResponse:
+    properties:
+      url:
+        type: string
+    type: object
+host: 165.232.68.67:8080
+info:
+  contact: {}
+  description: REST API for Restaurant-Assistant service
+  title: Restaurant-Assistant API
+  version: "1.0"
+paths:
+  /authenticated/order/check-new-orders-mark:
+    get:
+      consumes:
+      - application/json
+      description: Get status of presence of active orders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.CheckNewOrdersMark'
+      security:
+      - manager-auth: []
+      tags:
+      - order
+  /dish/:
+    post:
+      consumes:
+      - application/json
+      description: create dish
+      parameters:
+      - description: create dish info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Dish'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.dataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /dish/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete dish
+      parameters:
+      - description: dish id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+    get:
+      consumes:
+      - application/json
+      description: get dish information
+      parameters:
+      - description: dish id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getDishResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+    put:
+      consumes:
+      - application/json
+      description: update dish
+      parameters:
+      - description: dish id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: order update info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.UpdateDish'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getDishResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /dish/all:
+    get:
+      consumes:
+      - application/json
+      description: Get all dishes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getAllDishesResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /dish/image/{id}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Endpoint to upload and update images
+      parameters:
+      - description: file
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: dish, restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.uploadResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - image
+  /dish/restaurant/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all restaurant dishes
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getAllDishesResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /dish/types:
+    get:
+      consumes:
+      - application/json
+      description: Get all types of dishes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getDishesTypes'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /order:
+    get:
+      consumes:
+      - application/json
+      description: Get orders with filter, ordered by created time
+      parameters:
+      - description: select orders with created date > start
+        format: date
+        in: query
+        name: start
+        type: string
+      - description: select orders with created date < end
+        format: date
+        in: query
+        name: end
+        type: string
+      - description: restaurant ID
+        in: query
+        name: restaurantID
+        type: string
+      - description: dish name
+        in: query
+        name: dishName
+        type: string
+      - description: order status
+        enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        in: query
+        name: status
+        type: integer
+      - default: 20
+        description: number of returned orders
+        in: query
+        name: limit
+        type: integer
+      - default: 1
+        description: page
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.GetAllOrders'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.dataResponse'
+      tags:
+      - order
+  /order/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get order information
+      parameters:
+      - description: order id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.GetOrderByID'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - order
+    put:
+      consumes:
+      - application/json
+      description: update order status
+      parameters:
+      - description: order update info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.UpdateOrder'
+      - description: order id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - order
+  /order/check-new-orders-mark/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get status of presence of active orders
+      parameters:
+      - description: order id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.CheckNewOrdersMark'
+      tags:
+      - order
+  /order/delivery-service:
+    get:
+      consumes:
+      - application/json
+      description: Get all delivery services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.GetAllOrderDeliveryServices'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - order
+  /order/delivery-type:
+    get:
+      consumes:
+      - application/json
+      description: get all order delivery types
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.GetAllOrderDeliveryTypes'
+      tags:
+      - order
+  /order/status:
+    get:
+      consumes:
+      - application/json
+      description: Get all order status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.GetAllOrderStatuses'
+      tags:
+      - order
+  /restaurant:
+    post:
+      consumes:
+      - application/json
+      description: create restaurant
+      parameters:
+      - description: create restaurant
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Restaurant'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.dataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/:
+    get:
+      description: getting restaurants
+      parameters:
+      - description: sort restaurant by rating and title
+        in: body
+        name: sort_by
+        schema:
+          $ref: '#/definitions/domain.GetRestaurantOrderBy'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getAllRestaurantsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/{id}:
+    delete:
+      description: delete restaurant
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+    get:
+      description: getting restaurant by id
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getRestaurant'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+    put:
+      consumes:
+      - application/json
+      description: update restaurant
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: create restaurant
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/domain.UpdateRestaurant'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getRestaurant'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/{id}/feedbacks:
+    get:
+      description: getting restaurant feedbacks by iD
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getFeedbacks'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/categories:
+    get:
+      description: getting restaurant categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getCategories'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/categories-with-restaurants:
+    get:
+      description: getting restaurant categories with restaurants
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getRestaurantsCategoriesResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+  /restaurant/dishes/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all restaurant dishes with category
+      parameters:
+      - description: restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getDishesByRestaurantResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - dish
+  /restaurant/image/{id}:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Endpoint to upload and update images
+      parameters:
+      - description: file
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: dish, restaurant id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.uploadResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - image
+  /restaurant/nearest:
+    get:
+      description: getting restaurants
+      parameters:
+      - description: get nearest restaurants
+        in: body
+        name: address
+        schema:
+          $ref: '#/definitions/domain.GetRestaurantByAddress'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/handler.getAllRestaurantsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.response'
+      tags:
+      - restaurant
+securityDefinitions:
+  ManagerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

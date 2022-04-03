@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "pkg/authProto";
+
+package auth;
+
+service Auth {
+  rpc GetUserWithRights(AccessToken) returns (UserRole) {}
+  rpc BindUserAndRole(User) returns (ResultBinding) {}
+  rpc TokenGenerationByRefresh(RefreshToken) returns (GeneratedTokens) {}
+  rpc TokenGenerationByUserId(User) returns (GeneratedTokens) {}
+}
+
+message UserRole {
+  int32 userId = 1;
+  string role = 2;
+  string permissions = 3;
+}
+
+message AccessToken {
+  string accessToken = 1;
+}
+
+message RefreshToken {
+  string refreshToken = 1;
+}
+
+message GeneratedTokens {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message User {
+  int32 userId = 1;
+  int32 roleId = 2;
+}
+
+message ResultBinding {
+  bool result = 1;
+}

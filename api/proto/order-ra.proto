@@ -1,0 +1,42 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./pkg/orderservice_ra;orderservice_ra";
+
+service OrderService {
+  rpc CreateOrder(Order) returns (google.protobuf.Empty) {}
+  rpc GetOrderTotal(OrderDishes) returns (OrderTotal) {}
+  rpc AddRestaurantFeedback(OrderFeedbackOnRestaurantQuality) returns (google.protobuf.Empty) {}
+}
+
+message OrderFeedbackOnRestaurantQuality {
+  string OrderID = 1;
+  string Feedback = 2;
+  float Rating = 3;
+}
+
+message Order {
+  string OrderID = 1;
+  string RestaurantID = 2;
+  google.protobuf.Timestamp DeliveryTime = 3;
+  string ClientFullName = 4;
+  string ClientPhoneNumber = 5;
+  string Address = 6;
+  string PaymentType = 7;
+  repeated Dish list = 8;
+}
+
+message Dish {
+  string ID = 1;
+  int64 Amount = 2;
+}
+
+message OrderDishes {
+  string RestaurantID = 1;
+  repeated Dish list = 2;
+}
+
+message OrderTotal {
+  double Total = 1;
+}

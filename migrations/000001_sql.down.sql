@@ -1,0 +1,17 @@
+DROP EXTENSION IF EXISTS  cube cascade;
+DROP EXTENSION IF EXISTS  earthdistance cascade;
+DROP TABLE IF EXISTS location;
+DROP TABLE IF EXISTS order_dishes;
+DROP TABLE IF EXISTS category_restaurants;
+DROP TABLE IF EXISTS feedbacks;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS restaurants_dishes;
+DROP TABLE IF EXISTS dishes;
+DROP TABLE IF EXISTS restaurants;
+DROP TABLE IF EXISTS managers;
+DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS order_statuses;
+DROP TABLE IF EXISTS delivery_types;
+DROP TABLE IF EXISTS payment_types;

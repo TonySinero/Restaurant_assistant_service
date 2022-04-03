@@ -1,0 +1,12 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = "./pkg/orderservice_fd;orderservice_fd";
+
+service OrderServiceFD {
+  rpc UpdateOrderStatus(UpdateOrderMessage) returns (google.protobuf.Empty) {}
+}
+
+message UpdateOrderMessage {
+  string OrderUUID = 1;
+  int64 Status = 2;
+}
